@@ -1,13 +1,15 @@
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        l, r = 0, len(numbers) - 1
+        #we have to use two pointers in this.
+        #what two pointers tell us is we have to see if its greater 
 
-        while l < r:
-            curr_sum = numbers[l] + numbers[r]
-            if curr_sum > target:
-                r -= 1
-            elif curr_sum < target:
-                l += 1
-            else:
-                return [l + 1, r + 1]
-        return []
+        left = 0 
+        right = len(numbers) - 1 
+
+        while left < right: 
+            if numbers[left] + numbers[right] > target:
+                right -= 1
+            elif numbers[left] + numbers[right] < target:
+                left += 1
+            else: 
+                return [left + 1, right + 1]
