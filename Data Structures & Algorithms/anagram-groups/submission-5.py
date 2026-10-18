@@ -1,12 +1,19 @@
-from collections import defaultdict
-
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        hash_map = defaultdict(list)
+        
+        #given a list 
+        ans_ls = []
 
-        for word in strs:
-            sorted_word = str(sorted(word))
+        #return a list of lists 
+        result = defaultdict(list) #charactercount to list of anagrams 
 
-            hash_map[sorted_word].append(word)
-
-        return [value for value in hash_map.values()]
+        for word in strs: 
+            freq_map = {}
+            for char in word: 
+                freq_map[char] = 1 + freq_map.get(char, 0)
+            result[tuple(sorted(freq_map.items()))].append(word)
+        
+        for val in result.values():
+            ans_ls.append(val)
+        
+        return ans_ls
